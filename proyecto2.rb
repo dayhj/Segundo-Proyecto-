@@ -7,6 +7,7 @@ def registro_de_nuevos_libros(colautores,piladelibros)
     #Se debe tomar en cuenta el numero de existencia basados en el ISBN, no en el nombre del autor o del libro
     #En caso de que se ingrese un nuevo autor, se debe iniciar una pila nueva
     #Los libros se almacenana en diferentes pilas referido a nombre de libro , pero misma pila referido al nombre del autor
+    #jaja
     limpiar
     #tamañopila
     puts 'Bienvenido a la libreria.'
