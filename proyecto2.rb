@@ -94,7 +94,7 @@ def listado_de_libros()
     #No se debe repetir ISBN, se de incrementar en un contador y mostrar el total de datos
     #Se debe mostrar el listado de libros con los siguientes datos: ISBN , nombre, precio , autor y existencias
     #en lugar de repetir el libro mostrar las existencias, debe mantenr el orden en las diferentes pilas de libros
-    #en caso de que no existan libros en el sistema debe aparecer una alerta
+    #en caso de que no existan libros en el sistema debe aparecer una alertas
 end
 def listado_de_autores()
     #Debe mostrar la capacidad de libros que tiene dicho autor
