@@ -1,7 +1,7 @@
 def limpiar
     system('clear')
 end
-def registro_de_nuevos_libros(pilalibros)
+def registro_de_nuevos_libros(colautores,piladelibros)
     #Esta funcion es para ingresar diferente ejemplares en la libreria, son ordenados por autor y cada libro 
     #por lo menos tiene los siguientes datos: ISBN, nombre,autor y precio.
     #Se debe tomar en cuenta el numero de existencia basados en el ISBN, no en el nombre del autor o del libro
@@ -28,22 +28,62 @@ def registro_de_nuevos_libros(pilalibros)
         nombre_del_autor: nombre_autor, 
         precio_del_libro: precio_libro, 
         existencias_del_libro: existencias_libro,
-        siguiente:nil
+     #   siguiente:nil
     }
-    if pilalibros[:vacia]
-        pilalibros[:tope] = datos_libro
-        pilalibros[:vacia] = false
-    else
-        #paso 0     
-        tope = pilalibros[:tope]
-        datos_libro[:siguiente] = tope
-        #paso 1
-        pilalibros[:tope] = datos_libro
+    libros={
+        libro: datos_libro,
+        siguienteL:nil
+    }
+
+    autores={
+        autor: nombre_autor,
+        siguienteA:nil
+    }
+    if piladelibros[:vaciaL]==true
+         piladelibros[:topeL] = libros
+         piladelibros[:vaciaL] = false  
+         piladelibros[:topeL]
+         colautores[:topeC]=autores     
+         colautores[:finalC]=colautores[:topeC]
+        # piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
+        # colautores[:tamañoC]=colautores[:tamañoC]+1
+        pos=piladelibros[:topeL].size-1
+        else
+        if  piladelibros[:topeL][:libro][:isbn]==datos_libro[:isbn]
+            piladelibros[:topeL][:libro][:existencias_del_libro]= piladelibros[:topeL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
+            piladelibros[:topeL][:libro][:existencias_del_libro]
+        elsif piladelibros[:topeL][:libro][:isbn]!=datos_libro[:isbn] && pos==1
+          # for i in 0..pos.to_i
+           # if  piladelibros[:topeL][:tamañoL]==0 && pos==1
+                tope = piladelibros[:topeL]
+                libros[:siguienteL] = tope
+                 #paso 1
+                piladelibros[:topeL] = libros
+                piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
+                puts "holaaaaa"
+                pos.to_i=pos.to_i+1
+            #posicion_actual= piladelibros[:siguienteL][:tamañoL]
+            #posicion_siguiente= piladelibros[:siguienteL][:tamañoL]+1
+            #puts piladelibros[:topeL]
+        elsif piladelibros[:siguienteL][:libro][:isbn]==datos_libro[:isbn] 
+            piladelibros[:siguienteL][:libro][:existencias_del_libro]= piladelibros[:siguienteL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
+            piladelibros[:siguienteL][:libro][:existencias_del_libro]
+            #pos.to_i>1 && posicion_actual[:libro][:isbn]!=datos_libro[:isbn]
+               # tope = piladelibros[:topeL]
+               # libros[:siguienteL] = tope
+                 #paso 1
+               # piladelibros[:topeL] = libros
+              #  piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
+           # elsif posicion_actual[:libro][:isbn]==datos_libro[:isbn]
+             #     piladelibros[:siguienteL][:libro][:existencias_del_libro]= piladelibros[:siguienteL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
+             #     piladelibros[:siguienteL][:libro][:existencias_del_libro]
+             puts piladelibros[:topeL]
+        end
+           # end
+       # end
     end
-  #  puts pilalibros[:tope]=datos_libro
-    #puts pilalibros[:tope][:nombre_del_libro]
-    #puts "autor: #{datos_libro[:nombre_del_libro]}"
-    #puts pilalibros[:tope]
+    # puts piladelibros[:topeL][:libro][:nombre_del_autor]
+
 end
 def Registros_de_autores()
     #El sistema debe utilizar una cola con un maximo de 5 autores, para cada autor se almecenara la pila de libros 
@@ -96,12 +136,21 @@ def listado_de_ventas()
     #debe mostar el codigo , cantidad de libros comprados, subtotal, descuentos y total por cada una de las ventas.
     #imprimir la colota
 end
-pilalibros = {
-    tope: nil,
-    max: 5,
-    vacia: true,
-    llena: false,
-    tamaño: 0
+
+colautores={
+    topeC:nil,
+    finalC:nil,
+    maxC:5,
+    vaciaC:true,
+    llenaC:false,
+    tamañoC:0
+}
+piladelibros={
+    topeL:nil,
+    maxL:-1,
+    vaciaL: true,
+    llenaL: false,
+    tamañoL:0
 }
 begin
 #menu principal , y bienvenida
@@ -126,7 +175,7 @@ if opcion=='1'
     opcion=gets.chomp
     if opcion=='1'
         #registro de nuevo libro
-        registro_de_nuevos_libros(pilalibros)
+        registro_de_nuevos_libros(colautores,piladelibros)
     elsif opcion=='2'
         # registro de autores
     elsif opcion=='3'
