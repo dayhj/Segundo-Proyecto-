@@ -35,40 +35,46 @@ def registro_de_nuevos_libros(colautores,piladelibros)
         libro: datos_libro,
         siguienteL:nil
     }
-
-    autores={
-        autor: nombre_autor,
-        siguienteA:nil
-    }
+   
     if piladelibros[:vaciaL]==true
          piladelibros[:topeL] = libros
          piladelibros[:vaciaL] = false  
          piladelibros[:topeL]
-         colautores[:topeC]=autores     
-         colautores[:finalC]=colautores[:topeC]
+         autores={
+            autor: piladelibros[:topeL],
+            siguienteA:nil
+        }
+         colautores[:topeC]=autores 
+         colautores[:finalC]=autores
         # piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
         # colautores[:tamañoC]=colautores[:tamañoC]+1
         pos=piladelibros[:topeL].size-1
-        else
+    else
         if  piladelibros[:topeL][:libro][:isbn]==datos_libro[:isbn]
             piladelibros[:topeL][:libro][:existencias_del_libro]= piladelibros[:topeL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
             piladelibros[:topeL][:libro][:existencias_del_libro]
-        elsif piladelibros[:topeL][:libro][:isbn]!=datos_libro[:isbn] && pos==1
+        elsif piladelibros[:topeL][:libro][:isbn]!=datos_libro[:isbn] 
           # for i in 0..pos.to_i
            # if  piladelibros[:topeL][:tamañoL]==0 && pos==1
-                tope = piladelibros[:topeL]
-                libros[:siguienteL] = tope
+           tope = piladelibros[:topeL]
+           libros[:siguienteL] = tope
+            #paso 1
+           piladelibros[:topeL] = libros
+           piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
                  #paso 1
-                piladelibros[:topeL] = libros
-                piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
+               # piladelibros[:topeL] = libros
                 puts "holaaaaa"
-                pos.to_i=pos.to_i+1
+                pos=pos.to_i+1
             #posicion_actual= piladelibros[:siguienteL][:tamañoL]
             #posicion_siguiente= piladelibros[:siguienteL][:tamañoL]+1
-            #puts piladelibros[:topeL]
-        elsif piladelibros[:siguienteL][:libro][:isbn]==datos_libro[:isbn] 
-            piladelibros[:siguienteL][:libro][:existencias_del_libro]= piladelibros[:siguienteL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
-            piladelibros[:siguienteL][:libro][:existencias_del_libro]
+            puts piladelibros[:topeL]
+        else
+            puts "ver ver ver"
+            for i in 0..pos
+                if piladelibros[:siguienteL][:libro][:isbn]==datos_libro[:isbn] 
+              puts  piladelibros[:siguienteL][:libro][:existencias_del_libro]= piladelibros[:siguienteL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
+              puts  piladelibros[:siguienteL][:libro][:existencias_del_libro]
+                end
             #pos.to_i>1 && posicion_actual[:libro][:isbn]!=datos_libro[:isbn]
                # tope = piladelibros[:topeL]
                # libros[:siguienteL] = tope
@@ -81,7 +87,7 @@ def registro_de_nuevos_libros(colautores,piladelibros)
              puts piladelibros[:topeL]
         end
            # end
-       # end
+        end
     end
     # puts piladelibros[:topeL][:libro][:nombre_del_autor]
 
@@ -208,5 +214,5 @@ elsif opcion=='2'
     end
 #elsif opcion=='3'
  #   puts "Gracias por utilizar el programa"
-end
+end 
 end while opcion!='3'
