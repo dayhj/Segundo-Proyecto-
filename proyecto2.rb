@@ -1,7 +1,7 @@
 def limpiar
     system('clear')
 end
-def registro_de_nuevos_libros(colautores,piladelibros)
+def registro_de_nuevos_libros(piladelibros)
     #Esta funcion es para ingresar diferente ejemplares en la libreria, son ordenados por autor y cada libro 
     #por lo menos tiene los siguientes datos: ISBN, nombre,autor y precio.
     #Se debe tomar en cuenta el numero de existencia basados en el ISBN, no en el nombre del autor o del libro
@@ -38,50 +38,67 @@ def registro_de_nuevos_libros(colautores,piladelibros)
          piladelibros[:topeL] = libros
          piladelibros[:vaciaL] = false  
          piladelibros[:topeL]
-         autores={
-            autor: piladelibros[:topeL],
-            siguienteA:nil
-        }
-         colautores[:topeC]=autores 
-         colautores[:finalC]=autores
-        pos=piladelibros[:topeL].size-1
+      #   autores={
+     #       autor: piladelibros[:topeL],
+      #      siguienteA:nil
+     #   }
+      #   colautores[:topeC]=autores 
+       #  colautores[:finalC]=autores
         puts "pila #{piladelibros[:topeL]}"
-        puts "cola #{colautores[:topeC]}"
+      #  puts "cola #{colautores[:topeC]}"
     else
         if  piladelibros[:topeL][:libro][:isbn]==datos_libro[:isbn]
             piladelibros[:topeL][:libro][:existencias_del_libro]= piladelibros[:topeL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
             piladelibros[:topeL][:libro][:existencias_del_libro]
-        puts "pila #{piladelibros[:topeL]}"
-        puts "cola #{colautores[:topeC]}"
-        elsif piladelibros[:topeL][:libro][:isbn]!=datos_libro[:isbn] 
+        elsif piladelibros[:topeL][:libro][:isbn]!=datos_libro[:isbn] && piladelibros[:topeL][:siguienteL]==nil
            tope = piladelibros[:topeL]
            libros[:siguienteL] = tope
-            #paso 1
            piladelibros[:topeL] = libros
            piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
-                pos=pos.to_i+1
-            autores={
-                autor: piladelibros[:topeL],
-                siguienteA:nil
-             }
-            colautores[:topeC]=autores 
-            colautores[:finalC]=autores
+        #    autores={
+         #       autor: piladelibros[:topeL],
+         #       siguienteA:nil
+        #     }
+         #   colautores[:topeC]=autores 
+         #   colautores[:finalC]=autores
             
         puts "pila #{piladelibros[:topeL]}"
-        puts "cola #{colautores[:topeC]}"
-        # piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
-        # colautores[:tamañoC]=colautores[:tamañoC]+1
-        elsif piladelibros[:siguienteL][:libro][:isbn]==datos_libro[:isbn] 
-            puts "ver ver ver"
-         #   for i in 0..pos
-               # if piladelibros[:siguienteL][:libro][:isbn]==datos_libro[:isbn] 
-              #puts  piladelibros[:siguienteL][:libro][:existencias_del_libro]= piladelibros[:siguienteL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
-              #puts  piladelibros[:siguienteL][:libro][:existencias_del_libro]
-             #   end
-            # puts piladelibros[:topeL]
-        #end
+      #  puts "cola #{colautores[:topeC]}"
+    else
+        boo = false
+        if boo==false
+          elemento = piladelibros[:topeL]
+         begin
+            nuevo_elemento = elemento[:siguienteL]
+            if nuevo_elemento[:libro][:isbn]==datos_libro[:isbn]
+            nuevo_elemento[:libro][:existencias_del_libro]= nuevo_elemento[:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
+            puts nuevo_elemento[:libro][:existencias_del_libro]
+            boo=false
+            else
+                boo= true
+            end
+            nuevo_elemento [:valor]
+            elemento = nuevo_elemento
+            end while elemento[:siguiente] != nil
+            gets
+        end
+        if boo==true
+            tope = piladelibros[:topeL]
+            libros[:siguienteL] = tope
+            piladelibros[:topeL] = libros
+            piladelibros[:tamañoL]= piladelibros[:tamañoL]+1
+         #    autores={
+          #       autor: piladelibros[:topeL],
+          #       siguienteA:nil
+         #     }
+          #   colautores[:topeC]=autores 
+          #   colautores[:finalC]=autores
+             
+         puts "pila #{piladelibros[:topeL]}"
+       #  puts "cola #{colautores[:topeC]}"
         end
     end
+end
 end
 def Registros_de_autores()
     #El sistema debe utilizar una cola con un maximo de 5 autores, para cada autor se almecenara la pila de libros 
@@ -151,7 +168,35 @@ colautores={
     llenaC:false,
     tamañoC:0
 }
-piladelibros={
+pila1={
+    topeL:nil,
+    maxL:-1,
+    vaciaL: true,
+    llenaL: false,
+    tamañoL:0
+}
+pila2={
+    topeL:nil,
+    maxL:-1,
+    vaciaL: true,
+    llenaL: false,
+    tamañoL:0
+}
+pila3={
+    topeL:nil,
+    maxL:-1,
+    vaciaL: true,
+    llenaL: false,
+    tamañoL:0
+}
+pila4={
+    topeL:nil,
+    maxL:-1,
+    vaciaL: true,
+    llenaL: false,
+    tamañoL:0
+}
+pila5={
     topeL:nil,
     maxL:-1,
     vaciaL: true,
@@ -181,7 +226,7 @@ if opcion=='1'
     opcion=gets.chomp
     if opcion=='1'
         #registro de nuevo libro
-        registro_de_nuevos_libros(colautores,piladelibros)
+        registro_de_nuevos_libros(pila1)
     elsif opcion=='2'
         # registro de autores
     elsif opcion=='3'
