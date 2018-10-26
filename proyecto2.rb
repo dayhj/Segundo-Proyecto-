@@ -86,6 +86,11 @@ end
 def Registros_de_autores()
     #El sistema debe utilizar una cola con un maximo de 5 autores, para cada autor se almecenara la pila de libros 
     #no se puede almacenar dos veces a un mismo autor
+    if colautores[:topeC] == nil
+        
+    else
+
+    end
 end
 def listado_de_libros()
     #Esta opcion debe mostrar todos los libros en un sistema independiente del autor
@@ -93,6 +98,9 @@ def listado_de_libros()
     #Se debe mostrar el listado de libros con los siguientes datos: ISBN , nombre, precio , autor y existencias
     #en lugar de repetir el libro mostrar las existencias, debe mantenr el orden en las diferentes pilas de libros
     #en caso de que no existan libros en el sistema debe aparecer una alertas
+    
+
+
 end
 def listado_de_autores()
     #Debe mostrar la capacidad de libros que tiene dicho autor
