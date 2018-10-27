@@ -150,6 +150,12 @@ def listado_de_libros()
     #Se debe mostrar el listado de libros con los siguientes datos: ISBN , nombre, precio , autor y existencias
     #en lugar de repetir el libro mostrar las existencias, debe mantenr el orden en las diferentes pilas de libros
     #en caso de que no existan libros en el sistema debe aparecer una alertas
+
+    if => 0
+      puts ''
+    else
+      puts 'NO HAY LIBROS EN EL SISTEMA '
+    end
 end
 def listadoautores(cola)
     #Debe mostrar la capacidad de libros que tiene dicho autor
@@ -167,10 +173,25 @@ def buscar_libro()
    #Se ingresara el ISBN y este debe mostrar cuantas existencias tiene este libro
    #Debe mostrar los siguientes datos: ISBN, nombre ,autor , precio y existencias
    #Si el usuario ingresa un ISBN invalido debe informarle al vendedor
+   puts 'INGRESE EL ISBN QUE DESEA BUSCAR '
+  libroi= gets.to_i
+  if libroi ==
+    puts
+  else
+    puts 'EL ISBN ES INVALIDO'
+  end
 end
 def buscar_autor()
     #se buscara por medio del autor, y debe mostrar el nombre de todos los libros que estan en la pila
     #con su total de existencia
+    puts 'INGRESE EL AUTOR QUE DESEA BUSCAR '
+    libroa= gets.upcase.delete(' ')
+    if libroa ==
+      puts
+    else
+      puts 'EL AUTOR NO TIENE EXISTENCIAS'
+    end
+#
 end
 def registrar_venta()
     #Los empleados generaran ventas, pero solo almacenaremos las ultimas 20 ventas dentro de una cola
@@ -285,9 +306,9 @@ if opcion=='1'
         #elsif  pila4[:topeL]==nil||pila4[:topeL][:nombre_del_autor]==nombre_libro
          #  registro_de_nuevos_libros(pila4,nombre_libro)
        # elsif  pila5[:topeL]==nil||pila5[:topeL][:nombre_del_autor]==nombre_libro
-       #     registro_de_nuevos_libros(pila5,nombre_libro)  
+       #     registro_de_nuevos_libros(pila5,nombre_libro)
        # else
-        #    puts "Ya no puede ingresar ningun otro autor, ha llenado el total de autores" 
+        #    puts "Ya no puede ingresar ningun otro autor, ha llenado el total de autores"
         #end
     elsif opcion=='2'
         # registro de autores
