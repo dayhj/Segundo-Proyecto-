@@ -191,7 +191,7 @@ def buscar_autor()
     else
       puts 'EL AUTOR NO TIENE EXISTENCIAS'
     end
-
+#
 end
 def registrar_venta()
     #Los empleados generaran ventas, pero solo almacenaremos las ultimas 20 ventas dentro de una cola
