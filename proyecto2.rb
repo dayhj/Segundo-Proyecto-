@@ -23,15 +23,13 @@ def registro_de_nuevos_libros(piladelibros)
     precio_libro=gets.chomp
     puts "Ingrese el total de libros que esta ingresando"
     existencias_libro=gets.chop.to_i
-    datos_libro = {
+    libros={
+        libro: datos_libro,
         isbn: the_isbn,
         nombre_del_libro: nombre_libro,
         nombre_del_autor: nombre_autor,
         precio_del_libro: precio_libro,
         existencias_del_libro: existencias_libro,
-    }
-    libros={
-        libro: datos_libro,
         siguienteL:nil
     }
     if piladelibros[:vaciaL]==true
@@ -47,10 +45,10 @@ def registro_de_nuevos_libros(piladelibros)
         puts "pila #{piladelibros[:topeL]}"
       #  puts "cola #{colautores[:topeC]}"
     else
-        if  piladelibros[:topeL][:libro][:isbn]==datos_libro[:isbn]
-            piladelibros[:topeL][:libro][:existencias_del_libro]= piladelibros[:topeL][:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
-            piladelibros[:topeL][:libro][:existencias_del_libro]
-        elsif piladelibros[:topeL][:libro][:isbn]!=datos_libro[:isbn] && piladelibros[:topeL][:siguienteL]==nil
+        if  piladelibros[:topeL][:isbn]==datos_libro[:isbn]
+            piladelibros[:topeL][:existencias_del_libro]= piladelibros[:topeL][:existencias_del_libro]+datos_libro[:existencias_del_libro]
+            piladelibros[:topeL][:existencias_del_libro]
+        elsif piladelibros[:topeL][:isbn]!=datos_libro[:isbn] && piladelibros[:topeL][:siguienteL]==nil
            tope = piladelibros[:topeL]
            libros[:siguienteL] = tope
            piladelibros[:topeL] = libros
@@ -70,9 +68,9 @@ def registro_de_nuevos_libros(piladelibros)
           elemento = piladelibros[:topeL]
          begin
             nuevo_elemento = elemento[:siguienteL]
-            if nuevo_elemento[:libro][:isbn]==datos_libro[:isbn]
-            nuevo_elemento[:libro][:existencias_del_libro]= nuevo_elemento[:libro][:existencias_del_libro]+datos_libro[:existencias_del_libro]
-            puts nuevo_elemento[:libro][:existencias_del_libro]
+            if nuevo_elemento[:isbn]==datos_libro[:isbn]
+            nuevo_elemento[:existencias_del_libro]= nuevo_elemento[:existencias_del_libro]+datos_libro[:existencias_del_libro]
+            puts nuevo_elemento[:existencias_del_libro]
             boo=false
             else
                 boo= true
@@ -106,24 +104,26 @@ def registrosautores(cola)
   limpiar
 print 'Inserte el Nombre del Autor: '
 #el nombre del autor se ingresa en la varible llamada nom
-nom = gets.chomp.downcase
+nom = gets.chomp.upcase
 #se crea el diccionario de autores donde los datos seran: nombre y siguiente
 autores = {
     nombre: nom,
+    lapila: nil,
     siguiente: nil
 }
+#hay que guardar por posicion
 #Se crea una condicion para verificar si esta vacia, tope, fondo y tamaño
 if cola[:esta_vacia] == true
-  cola[:tope] = autores
-  cola[:fondo] = autores
-  cola[:esta_vacia] = false
-  cola[:tamaño] = cola[:tamaño] +1
+ puts cola[:tope] = autores
+ puts cola[:fondo] = autores
+ puts cola[:esta_vacia] = false
+ puts cola[:tamaño] = cola[:tamaño] +1
 else
-  aux = cola[:fondo]
-  aux[:siguiente] = autores
-  autores[:siguiente] = nil
-  cola[:fondo] = autores
-  cola[:tamaño] = cola[:tamaño] +1
+ puts aux = cola[:fondo]
+ puts aux[:siguiente] = autores
+ puts autores[:siguiente] = nil
+ puts cola[:fondo] = autores
+ puts cola[:tamaño] = cola[:tamaño] +1
 end
 if cola[:tamaño] < cola[:max] || cola[:max] == -1
   cola[:tamaño] += 1
