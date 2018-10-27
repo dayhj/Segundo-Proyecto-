@@ -1,7 +1,7 @@
 def limpiar
     system('clear')
 end
-def registro_de_nuevos_libros(piladelibros,nombre_libro)
+def registro_de_nuevos_libros(piladelibros)
     #Esta funcion es para ingresar diferente ejemplares en la libreria, son ordenados por autor y cada libro
     #por lo menos tiene los siguientes datos: ISBN, nombre,autor y precio.
     #Se debe tomar en cuenta el numero de existencia basados en el ISBN, no en el nombre del autor o del libro
@@ -14,7 +14,8 @@ def registro_de_nuevos_libros(piladelibros,nombre_libro)
     puts "En esta opcion usted podra ingresar un libro , con ciertos datos especificos"
     puts "Ingrese el ISBN del libro"
     the_isbn = gets.chomp.upcase
-   # puts "Ingrese el nombre del libro"
+    puts "Ingrese el nombre del libro"
+    nombre_libro = gets.chomp.upcase
     puts "Ingrese el nombre del autor"
     nombre_autor=gets.chomp.upcase
     puts "Ingrese el precio del libro"
@@ -149,9 +150,6 @@ def listado_de_libros()
     #Se debe mostrar el listado de libros con los siguientes datos: ISBN , nombre, precio , autor y existencias
     #en lugar de repetir el libro mostrar las existencias, debe mantenr el orden en las diferentes pilas de libros
     #en caso de que no existan libros en el sistema debe aparecer una alertas
-
-
-
 end
 def listadoautores(cola)
     #Debe mostrar la capacidad de libros que tiene dicho autor
@@ -276,21 +274,21 @@ if opcion=='1'
     opcion=gets.chomp
     if opcion=='1'
         #registro de nuevo libro
-        puts "ingrese el nombre del autor"
-        nombre_libro = gets.chomp.upcase
-        if  pila1[:topeL]==nil||pila1[:topeL][:nombre_del_autor]==nombre_libro
-         registro_de_nuevos_libros(pila1,nombre_libro)
-         elsif  pila2[:topeL]==nil||pila2[:topeL][:nombre_del_autor]==nombre_libro
-        registro_de_nuevos_libros(pila2,nombre_libro)
-        elsif  pila3[:topeL]==nil||pila3[:topeL][:nombre_del_autor]==nombre_libro
-            registro_de_nuevos_libros(pila3,nombre_libro)
-        elsif  pila4[:topeL]==nil||pila4[:topeL][:nombre_del_autor]==nombre_libro
-           registro_de_nuevos_libros(pila4,nombre_libro)
-        elsif  pila5[:topeL]==nil||pila5[:topeL][:nombre_del_autor]==nombre_libro
-            registro_de_nuevos_libros(pila5,nombre_libro)  
-        else
-            puts "Ya no puede ingresar ningun otro autor, ha llenado el total de autores" 
-        end
+       #puts "ingrese el nombre del autor"
+        #nombre_libro = gets.chomp.upcase
+       # if  pila1[:topeL]==nil||pila1[:topeL][:nombre_del_autor]==nombre_libro
+         registro_de_nuevos_libros(pila1)
+        # elsif  pila2[:topeL]==nil||pila2[:topeL][:nombre_del_autor]==nombre_libro
+       # registro_de_nuevos_libros(pila2,nombre_libro)
+        #elsif  pila3[:topeL]==nil||pila3[:topeL][:nombre_del_autor]==nombre_libro
+         #   registro_de_nuevos_libros(pila3,nombre_libro)
+        #elsif  pila4[:topeL]==nil||pila4[:topeL][:nombre_del_autor]==nombre_libro
+         #  registro_de_nuevos_libros(pila4,nombre_libro)
+       # elsif  pila5[:topeL]==nil||pila5[:topeL][:nombre_del_autor]==nombre_libro
+       #     registro_de_nuevos_libros(pila5,nombre_libro)  
+       # else
+        #    puts "Ya no puede ingresar ningun otro autor, ha llenado el total de autores" 
+        #end
     elsif opcion=='2'
         # registro de autores
         registrosautores(cola)
