@@ -124,14 +124,24 @@ else
   cola[:fondo] = autores
   cola[:tamaño] = cola[:tamaño] +1
 end
-#if cola[:max] == pila[:max]
-#  puts "YA NO TIENE ESPACIO"
-#else cola[:max] > pila[:max]
-# puts "Tiene espacio"
-#end
-
-
-
+if cola[:tamaño] < cola[:max] || cola[:max] == -1
+  cola[:tamaño] += 1
+  autores = {
+    nombre: nom,
+    siguiente: nil
+    #posicion: cola[:tamaño] - 1
+}
+  autores[:siguiente] = cola[:tope]
+  cola[:tope] = autores
+else
+  puts 'COLA LLENA'
+  puts 'YA TIENE LOS 5 AUTORES SOLICIDADOS'
+end
+if autores[:nombre] == autores[:nombre]
+  puts 'ESE NOMBRE YA ESTA'
+else autores[:nombre]!= autores[:nombre ]
+  puts 'ESE NOMBRE NO ESTA'
+end
 end
 def listado_de_libros()
     #Esta opcion debe mostrar todos los libros en un sistema independiente del autor
@@ -153,6 +163,7 @@ def listadoautores(cola)
     as= as[:siguiente]
     end
     puts as[:nombre]
+
 end
 def buscar_libro()
    #Se ingresara el ISBN y este debe mostrar cuantas existencias tiene este libro
